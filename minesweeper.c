@@ -23,6 +23,7 @@ void open(int mine[WIDTH][HEIGHT],int mask[WIDTH][HEIGHT],int x,int y){
 
 int main(){
     int x,y,key,i,j,mine_cnt=0,clear_cnt=0;
+    char number[][3] = {"１","２","３","４","５","６","７","８"};
     int mine[WIDTH][HEIGHT],mask[WIDTH][HEIGHT];
     int cursor_x=0,cursor_y=0;
 
@@ -54,20 +55,18 @@ int main(){
         for(x=0;x<WIDTH;x++){
             for(y=0;y<HEIGHT;y++){
                 if(cursor_x==x&&cursor_y==y)
-                    printf(" ◎ ");
+                    printf("◎");
                 else if(mask[x][y]){
                     if(mask[x][y]==-1)
-                        printf(" △ ");
+                        printf("△");
                     else
-                        printf(" ■ ");
+                        printf("■");
                 }
-                else if(mine[x][y]==-1)
-                    printf(" ▲ ");
                 else{
                     if(mine[x][y]==0)
-                        printf("   ");
+                        printf("　");
                     else
-                        printf(" %d ",mine[x][y]);
+                        printf("%s",number[mine[x][y]-1]);
                 }
             }
             printf("\n");
