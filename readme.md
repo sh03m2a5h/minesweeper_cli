@@ -1,11 +1,11 @@
 # この作品について
 この作品はC言語で作られたマインスイーパーのコンソールアプリです。
 ## 使い方
-<kbd>W</kbd>上
-<kbd>S</kbd>下
-<kbd>A</kbd>左
-<kbd>D</kbd>右
-<kbd>Space</kbd>開ける
+<kbd>W</kbd>上  
+<kbd>S</kbd>下  
+<kbd>A</kbd>左  
+<kbd>D</kbd>右  
+<kbd>Space</kbd>開ける  
 <kbd>F</kbd>フラグ立て
 # 勝手な自問自答コーナー
 多分これいつものことになる。
