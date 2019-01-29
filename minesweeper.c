@@ -23,7 +23,7 @@ void open(int mine[WIDTH][HEIGHT],int mask[WIDTH][HEIGHT],int x,int y){
 
 int main(){
     int x,y,key,i,j,mine_cnt=0,clear_cnt=0;
-    char number[][3] = {"ï¼‘","ï¼’","ï¼“","ï¼”","ï¼•","ï¼–","ï¼—","ï¼˜"};
+    char number[][3] = {"‚P","‚Q","‚R","‚S","‚T","‚U","‚V","‚W"};
     int mine[WIDTH][HEIGHT],mask[WIDTH][HEIGHT];
     int cursor_x=0,cursor_y=0;
 
@@ -55,16 +55,16 @@ int main(){
         for(x=0;x<WIDTH;x++){
             for(y=0;y<HEIGHT;y++){
                 if(cursor_x==x&&cursor_y==y)
-                    printf("â—Ž");
+                    printf("");
                 else if(mask[x][y]){
                     if(mask[x][y]==-1)
-                        printf("â–³");
+                        printf("¢");
                     else
-                        printf("â– ");
+                        printf("¡");
                 }
                 else{
                     if(mine[x][y]==0)
-                        printf("ã€€");
+                        printf("@");
                     else
                         printf("%s",number[mine[x][y]-1]);
                 }
@@ -78,32 +78,25 @@ int main(){
         switch (key)
         {
             case 'w':
-                cursor_x--;
+                cursor_x-=cursor_x<=0?0:1;
                 break;
             case 's':
-                cursor_x++;
+                cursor_x+=cursor_x>=WIDTH-1?0:1;
                 break;
             case 'a':
-                cursor_y--;
+                cursor_y-=cursor_y<=0?0:1;
                 break;
             case 'd':
-                cursor_y++;
+                cursor_y+=cursor_y>=HEIGHT-1?0:1;
                 break;
             case ' ':
-                open(mine,mask,cursor_x,cursor_y);
+                if(mask[cursor_x][cursor_y]!=-1)
+                    open(mine,mask,cursor_x,cursor_y);
                 break;
             case 'f':
                 mask[cursor_x][cursor_y] = mask[cursor_x][cursor_y] == 0 ? 0 : mask[cursor_x][cursor_y] == 1 ? -1 : 1;
                 break;
         }
-        if(cursor_x<0)
-            cursor_x++;
-        else if(cursor_x>=WIDTH)
-            cursor_x--;
-        else if(cursor_y<0)
-            cursor_y++;
-        else if(cursor_y>=HEIGHT)
-            cursor_y--;
         
         clear_cnt=0;
         for(x=0;x<WIDTH;x++)
@@ -129,6 +122,6 @@ int main(){
         }
 
     }
-
+    system("pause");
     return 0;
 }
