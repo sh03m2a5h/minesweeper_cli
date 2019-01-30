@@ -75,9 +75,7 @@ int main(){
                 }
                 else{
                     //ŠJ‚¢‚Ä‚é‚Æ‚«
-                    if(mine[x][y]==0)
-                        //number”z—ñ‚Ì’Ê‚è‚Éo‚·
-                        printf("%s",number[mine[x][y]-1]);
+                    printf("%s",number[mine[x][y]]);
                 }
             }
             printf("\n");
