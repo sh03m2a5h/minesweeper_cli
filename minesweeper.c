@@ -16,29 +16,11 @@
 int mine[WIDTH][HEIGHT],mask[WIDTH][HEIGHT];
 
 //選択した部分を開ける関数
-void open(int x,int y){
-    int i,j;
-    //自分自身を開ける
-    mask[x][y] = 0;
-
-    //隣接していなければ
-    if(mine[x][y]==0)
-        for(i=(x==0?0:-1);i<=(x==HEIGHT-1?0:1);i++)
-            for(j=(y==0?0:-1);j<=(y==WIDTH-1?0:1);j++){
-                if(mask[x+i][y+j]==0);
-                    //自分自身はもう空いてるからスルー
-                else if(mine[x+i][y+j]!=0)
-                    //地雷に隣接していれば自分のみ開ける
-                    mask[x+i][y+j]=0;
-                else
-                    //自身が地雷に隣接していなければ周りも開ける(再帰)
-                    open(x+i,y+j);
-            }
-}
+void open(int x,int y);
 
 int main(){
     int x,y,key,i,j,mine_cnt=0,clear_cnt=0;
-    char number[][3] = {"１","２","３","４","５","６","７","８"};
+    char number[][3] = {"　","１","２","３","４","５","６","７","８"};
     int cursor_x=0,cursor_y=0;
 
     //乱数シードの設定
@@ -94,10 +76,7 @@ int main(){
                 else{
                     //開いてるとき
                     if(mine[x][y]==0)
-                        //接してなければ空白
-                        printf("　");
-                    else
-                        //接してればその数
+                        //number配列の通りに出す
                         printf("%s",number[mine[x][y]-1]);
                 }
             }
@@ -173,4 +152,25 @@ int main(){
     //キー入力待機
     system("pause");
     return 0;
+}
+
+//選択した部分を開ける関数
+void open(int x,int y){
+    int i,j;
+    //自分自身を開ける
+    mask[x][y] = 0;
+
+    //隣接していなければ
+    if(mine[x][y]==0)
+        for(i=(x==0?0:-1);i<=(x==HEIGHT-1?0:1);i++)
+            for(j=(y==0?0:-1);j<=(y==WIDTH-1?0:1);j++){
+                if(mask[x+i][y+j]==0);
+                    //自分自身はもう空いてるからスルー
+                else if(mine[x+i][y+j]!=0)
+                    //地雷に隣接していれば自分のみ開ける
+                    mask[x+i][y+j]=0;
+                else
+                    //自身が地雷に隣接していなければ周りも開ける(再帰)
+                    open(x+i,y+j);
+            }
 }
